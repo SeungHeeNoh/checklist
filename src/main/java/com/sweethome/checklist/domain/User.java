@@ -4,9 +4,6 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -17,7 +14,7 @@ import java.util.Objects;
         @Index(columnList = "userId", unique = true)
 })
 @Entity
-public class User {
+public class User extends TimeAuditingFields {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userSeq;
@@ -29,16 +26,6 @@ public class User {
     @Setter
     @Column(nullable = false)
     private String password;
-
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    @CreatedDate
-    @Column(nullable = false)
-    private LocalDateTime created_at;
-
-    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-    @LastModifiedDate
-    @Column
-    private LocalDateTime modified_at;
 
     @Setter
     @Column(nullable = false)
