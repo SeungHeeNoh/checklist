@@ -10,7 +10,7 @@ import java.util.Objects;
 
 @Getter
 @ToString
-@Table(indexes = {
+@Table(name = "user_table", indexes = {
         @Index(columnList = "userId", unique = true)
 })
 @Entity
